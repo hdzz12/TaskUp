@@ -7,6 +7,6 @@ export const hafidzProfile: ProfileInfo = {
   major: 'Teknik Elekro',
   bio: 'Mahasiswa Teknik Elektro yang juga memiliki antusias membangun solusi dengan IoT, Robotic, software, web application modern, dan eksplorasi kecerdasan buatan.',
   email: 'hafidzm2929@gmail.com',
-  github: 'https://github.com',
+  github: 'https://github.com/hdzz12',
   linkedin: 'https://linkedin.com',
 };
