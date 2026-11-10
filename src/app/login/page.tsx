@@ -111,7 +111,7 @@ export default function LoginPage() {
             </button>
           </form>
 
-          <div className="mt-6 pt-4 border-t border-slate-800/80 text-[11px] text-slate-500 space-y-2">
+          {/* <div className="mt-6 pt-4 border-t border-slate-800/80 text-[11px] text-slate-500 space-y-2">
             <div className="flex items-center gap-1.5 text-slate-400 font-medium">
               <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
               <span>Info Akses Default:</span>
@@ -120,7 +120,7 @@ export default function LoginPage() {
               Kata sandi tersimpan di environment variable <code className="text-slate-300">ADMIN_PASSWORD</code>.
               Default awal: <code className="text-indigo-400 font-mono">hafidzpassword123</code>.
             </p>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
