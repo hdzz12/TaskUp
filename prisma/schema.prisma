@@ -1,0 +1,31 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Item {
+  id               String   @id @default(cuid())
+  title            String
+  slug             String   @unique
+  type             String   @default("TUGAS") // "TUGAS" or "PORTO"
+  summary          String?
+  description      String   @default("")
+  category         String   @default("Pemrograman Web")
+  subject          String?  // Mata Kuliah
+  lecturer         String?  // Dosen Pengampu
+  semester         String?  // e.g. "Semester 4"
+  status           String   @default("SIAP_DICEK") // "DRAFT", "SIAP_DICEK", "REVISI", "SELESAI"
+  grade            String?  // e.g. "A"
+  lecturerFeedback String?  // Catatan / Feedback Dosen
+  repoUrl          String?
+  demoUrl          String?
+  fileUrl          String?  // Link Dokumen / Drive / PDF
+  coverImage       String?
+  techStack        String   @default("[]") // JSON array string
+  featured         Boolean  @default(false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
