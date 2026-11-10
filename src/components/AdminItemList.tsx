@@ -86,8 +86,9 @@ export function AdminItemList({ initialItems }: Props) {
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
         <div className="flex items-center gap-1.5 p-1 bg-slate-900 rounded-xl border border-slate-800">
           <button
+            type="button"
             onClick={() => setTypeFilter('ALL')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer select-none touch-manipulation transition ${
               typeFilter === 'ALL'
                 ? 'bg-indigo-600 text-white'
                 : 'text-slate-400 hover:text-white'
@@ -96,8 +97,9 @@ export function AdminItemList({ initialItems }: Props) {
             Semua ({items.length})
           </button>
           <button
+            type="button"
             onClick={() => setTypeFilter('TUGAS')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer select-none touch-manipulation transition ${
               typeFilter === 'TUGAS'
                 ? 'bg-blue-600 text-white'
                 : 'text-slate-400 hover:text-white'
@@ -106,8 +108,9 @@ export function AdminItemList({ initialItems }: Props) {
             Tugas Kuliah ({items.filter((i) => i.type === 'TUGAS').length})
           </button>
           <button
+            type="button"
             onClick={() => setTypeFilter('PORTO')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer select-none touch-manipulation transition ${
               typeFilter === 'PORTO'
                 ? 'bg-purple-600 text-white'
                 : 'text-slate-400 hover:text-white'

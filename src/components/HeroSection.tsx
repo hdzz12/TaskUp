@@ -59,16 +59,16 @@ export function HeroSection({ stats }: Props) {
           {/* Social and quick actions */}
           <div className="flex flex-wrap items-center gap-3 pt-2">
             <Link
-              href="/?type=TUGAS"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-xs bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/25 transition"
+              href="/?type=TUGAS#karya"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-xs bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/25 transition cursor-pointer"
             >
               <GraduationCap className="w-4 h-4" />
               <span>Periksa Tugas Kuliah</span>
             </Link>
 
             <Link
-              href="/?type=PORTO"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-xs bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 transition"
+              href="/?type=PORTO#karya"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-xs bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 transition cursor-pointer"
             >
               <FolderGit2 className="w-4 h-4 text-purple-400" />
               <span>Eksplor Portofolio</span>
