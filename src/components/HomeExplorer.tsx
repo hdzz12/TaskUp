@@ -1,10 +1,11 @@
 'use client';
 
 import { useState, useMemo, useEffect } from 'react';
+import Link from 'next/link';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { Item, ItemType, AssignmentStatus } from '@/lib/types';
 import { ItemCard } from './ItemCard';
-import { Search, Filter, GraduationCap, FolderGit2, Sparkles, Layers } from 'lucide-react';
+import { Search, Filter, GraduationCap, FolderGit2, Sparkles, Layers, Shield } from 'lucide-react';
 
 interface Props {
   initialItems: Item[];
@@ -148,24 +149,46 @@ export function HomeExplorer({ initialItems, isAdmin, defaultType }: Props) {
           </button>
         </div>
 
-        {/* Search input */}
-        <div className="relative flex-1 max-w-md">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Cari tugas, mata kuliah, dosen, atau tech stack..."
-            className="w-full pl-10 pr-8 py-2 text-xs rounded-xl bg-slate-950/80 border border-slate-800 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
-          />
-          {searchQuery && (
-            <button
-              type="button"
-              onClick={() => setSearchQuery('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-500 hover:text-slate-300 cursor-pointer p-1"
+        {/* Search input & Admin Action */}
+        <div className="flex items-center gap-2 flex-1 max-w-lg justify-end">
+          <div className="relative flex-1">
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Cari tugas, mata kuliah, dosen, atau tech stack..."
+              className="w-full pl-10 pr-8 py-2 text-xs rounded-xl bg-slate-950/80 border border-slate-800 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
+            />
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery('')}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-500 hover:text-slate-300 cursor-pointer p-1"
+              >
+                ✕
+              </button>
+            )}
+          </div>
+
+          {isAdmin ? (
+            <Link
+              href="/admin"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white shadow-md shadow-indigo-600/20 transition shrink-0 cursor-pointer"
+              title="Dashboard Admin Hafidz"
             >
-              ✕
-            </button>
+              <Sparkles className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Admin</span>
+            </Link>
+          ) : (
+            <Link
+              href="/login"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium text-slate-400 hover:text-white bg-slate-950/80 hover:bg-slate-800 border border-slate-800 transition shrink-0 cursor-pointer"
+              title="Login Admin Hafidz"
+            >
+              <Shield className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Login Admin</span>
+            </Link>
           )}
         </div>
       </div>

@@ -1,5 +1,4 @@
 import { Suspense } from 'react';
-import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { HeroSection } from '@/components/HeroSection';
 import { HomeExplorer } from '@/components/HomeExplorer';
@@ -24,9 +23,7 @@ export default async function HomePage({
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100">
-      <Navbar />
-
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pb-20 space-y-12">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-20 space-y-12">
         <HeroSection stats={stats} />
         <Suspense fallback={<div className="text-center py-12 text-slate-500 text-xs">Memuat katalog karya...</div>}>
           <HomeExplorer initialItems={items} isAdmin={isAdmin} defaultType={params.type} />

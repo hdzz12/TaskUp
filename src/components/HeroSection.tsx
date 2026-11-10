@@ -4,7 +4,6 @@ import {
   GraduationCap,
   FolderGit2,
   Mail,
-  MapPin,
   CheckCircle,
   Clock,
   Sparkles,
@@ -22,23 +21,13 @@ interface Props {
 
 export function HeroSection({ stats }: Props) {
   return (
-    <section className="relative pt-12 pb-16 overflow-hidden">
+    <section className="relative pt-6 pb-14 overflow-hidden">
       {/* Background glow effects */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-gradient-to-tr from-indigo-600/20 via-purple-600/20 to-pink-600/10 blur-[100px] rounded-full pointer-events-none -z-10" />
 
       <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
         {/* Left Column: Bio & Intro */}
         <div className="max-w-2xl space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs text-slate-300">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-            <span className="font-medium text-emerald-400">Portal Tugas & Portofolio Aktif</span>
-            <span className="text-slate-600">•</span>
-            <span className="flex items-center gap-1 text-slate-400">
-              <MapPin className="w-3 h-3" />
-              {hafidzProfile.location}
-            </span>
-          </div>
-
           <div className="space-y-3">
             <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
               Hai, saya{' '}

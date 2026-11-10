@@ -45,7 +45,12 @@ export function Footer() {
         </div>
 
         <div className="mt-8 pt-8 border-t border-slate-900/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-600 gap-4">
-          <p>© {new Date().getFullYear()} Muhammad Hafidz. Hosted on Vercel & Powered by Neon PostgreSQL.</p>
+          <p>
+            © {new Date().getFullYear()} Muhammad Hafidz. Hosted on Vercel & Powered by Neon PostgreSQL.
+            <Link href="/login" className="hover:text-slate-400 transition ml-2">
+              • Login Admin
+            </Link>
+          </p>
           <p className="flex items-center gap-1">
             Dibangun dengan <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500 inline" /> Next.js & Tailwind
           </p>
