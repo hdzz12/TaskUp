@@ -15,6 +15,12 @@ import {
   UserCheck,
   Tag,
   AlertCircle,
+  Upload,
+  FileText,
+  CheckCircle2,
+  Loader2,
+  X,
+  ExternalLink,
 } from 'lucide-react';
 
 interface Props {
@@ -43,6 +49,46 @@ export function ItemForm({ initialData, isEditing = false }: Props) {
   const [demoUrl, setDemoUrl] = useState(initialData?.demoUrl || '');
   const [repoUrl, setRepoUrl] = useState(initialData?.repoUrl || '');
   const [fileUrl, setFileUrl] = useState(initialData?.fileUrl || '');
+  const [uploadingPdf, setUploadingPdf] = useState(false);
+  const [uploadedInfo, setUploadedInfo] = useState<{ filename: string; size: number } | null>(null);
+
+  const handlePdfUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.name.toLowerCase().endsWith('.pdf') && file.type !== 'application/pdf') {
+      alert('Harap pilih file berformat PDF.');
+      return;
+    }
+
+    setUploadingPdf(true);
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        alert(data.error || 'Gagal mengunggah berkas PDF.');
+        setUploadingPdf(false);
+        return;
+      }
+
+      setFileUrl(data.url);
+      setUploadedInfo({
+        filename: data.filename,
+        size: data.size,
+      });
+    } catch {
+      alert('Terjadi kesalahan koneksi saat mengunggah file.');
+    } finally {
+      setUploadingPdf(false);
+    }
+  };
 
   // Tech stack as comma separated
   const initialTags = (() => {
@@ -315,17 +361,116 @@ export function ItemForm({ initialData, isEditing = false }: Props) {
         </div>
       )}
 
-      {/* External Links */}
-      <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-4">
+      {/* External Links & PDF Upload */}
+      <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-5">
         <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-300">
           <LinkIcon className="w-4 h-4 text-indigo-400" />
-          <span>Tautan Tugas & Berkas (Bisa diakses Dosen / Publik)</span>
+          <span>Upload Berkas Dokumen & Tautan Tugas</span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {/* Dedicated PDF Upload Zone */}
+        <div className="p-4 rounded-xl bg-slate-950/80 border border-dashed border-slate-700/80 space-y-3">
+          <div className="flex items-center justify-between">
+            <label className="text-xs font-bold text-slate-200 flex items-center gap-2">
+              <FileText className="w-4 h-4 text-rose-400" />
+              <span>Unggah Berkas PDF (Laporan / Makalah / Soal)</span>
+            </label>
+            <span className="text-[11px] text-slate-500">Maksimal 30 MB (.pdf)</span>
+          </div>
+
+          {fileUrl ? (
+            <div className="p-3 rounded-xl bg-indigo-950/30 border border-indigo-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div className="flex items-center gap-2.5 overflow-hidden">
+                <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+                <div className="truncate">
+                  <div className="text-xs font-semibold text-slate-200 truncate">
+                    {uploadedInfo?.filename || fileUrl.split('/').pop() || 'Dokumen PDF'}
+                  </div>
+                  <div className="text-[11px] text-slate-400 font-mono truncate">
+                    {fileUrl}
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 shrink-0">
+                <a
+                  href={fileUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center gap-1 transition"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>Cek PDF</span>
+                </a>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setFileUrl('');
+                    setUploadedInfo(null);
+                  }}
+                  className="p-1.5 rounded-lg text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 border border-rose-500/20 transition cursor-pointer"
+                  title="Hapus berkas PDF ini"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <label
+                className={`flex flex-col items-center justify-center p-6 rounded-xl border border-dashed border-slate-800 hover:border-indigo-500/50 bg-slate-900/40 hover:bg-slate-900/80 cursor-pointer transition ${
+                  uploadingPdf ? 'opacity-50 pointer-events-none' : ''
+                }`}
+              >
+                <input
+                  type="file"
+                  accept=".pdf,application/pdf"
+                  onChange={handlePdfUpload}
+                  disabled={uploadingPdf}
+                  className="hidden"
+                />
+                {uploadingPdf ? (
+                  <div className="flex items-center gap-2 text-indigo-400 text-xs font-medium py-2">
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    <span>Sedang mengunggah berkas PDF ke server...</span>
+                  </div>
+                ) : (
+                  <div className="flex flex-col items-center text-center gap-1.5 py-1">
+                    <div className="p-2.5 rounded-xl bg-indigo-600/10 text-indigo-400 border border-indigo-500/20 mb-1">
+                      <Upload className="w-5 h-5" />
+                    </div>
+                    <span className="text-xs font-semibold text-slate-200">
+                      Klik di sini untuk memilih berkas PDF dari laptop / komputer
+                    </span>
+                    <span className="text-[11px] text-slate-400">
+                      Berkas PDF akan langsung bisa dibaca oleh dosen melalui PDF Reader interaktif di website
+                    </span>
+                  </div>
+                )}
+              </label>
+            </div>
+          )}
+
+          {/* Option to manual URL (e.g. Google Drive) */}
+          <div className="pt-2">
+            <label className="block text-[11px] font-medium text-slate-400 mb-1">
+              Atau masukkan URL Berkas / Link Google Drive secara manual:
+            </label>
+            <input
+              type="url"
+              value={fileUrl}
+              onChange={(e) => setFileUrl(e.target.value)}
+              placeholder="https://drive.google.com/... atau /uploads/nama-file.pdf"
+              className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500 font-mono"
+            />
+          </div>
+        </div>
+
+        {/* Demo & Repo Links */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-xs font-medium text-slate-300 mb-1">
-              Link Live Demo
+              Link Live Demo (Opsional)
             </label>
             <input
               type="url"
@@ -338,26 +483,13 @@ export function ItemForm({ initialData, isEditing = false }: Props) {
 
           <div>
             <label className="block text-xs font-medium text-slate-300 mb-1">
-              Link Repositori GitHub
+              Link Repositori GitHub (Source Code)
             </label>
             <input
               type="url"
               value={repoUrl}
               onChange={(e) => setRepoUrl(e.target.value)}
               placeholder="https://github.com/..."
-              className="w-full px-4 py-2 text-xs rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500"
-            />
-          </div>
-
-          <div>
-            <label className="block text-xs font-medium text-slate-300 mb-1">
-              Link Berkas / Google Drive / PDF
-            </label>
-            <input
-              type="url"
-              value={fileUrl}
-              onChange={(e) => setFileUrl(e.target.value)}
-              placeholder="https://drive.google.com/..."
               className="w-full px-4 py-2 text-xs rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500"
             />
           </div>

@@ -4,6 +4,7 @@ import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { StatusBadge } from '@/components/StatusBadge';
 import { MarkdownViewer } from '@/components/MarkdownViewer';
+import { PdfViewer } from '@/components/PdfViewer';
 import { GithubIcon } from '@/components/SocialIcons';
 import { getItemBySlug } from '@/lib/data';
 import { isAdminAuthenticated } from '@/lib/auth';
@@ -188,7 +189,7 @@ export default async function TugasDetailPage({ params }: Props) {
               className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 transition"
             >
               <FileText className="w-4 h-4 text-emerald-400" />
-              <span>Laporan PDF / Berkas Tugas (Drive)</span>
+              <span>Laporan PDF / Berkas Tugas</span>
             </a>
           )}
 
@@ -198,6 +199,13 @@ export default async function TugasDetailPage({ params }: Props) {
             </span>
           )}
         </div>
+
+        {/* Embedded Interactive PDF Reader */}
+        {item.fileUrl && (
+          <div className="mt-6">
+            <PdfViewer fileUrl={item.fileUrl} title={item.title} />
+          </div>
+        )}
 
         {/* Tech Stack */}
         {tags.length > 0 && (
