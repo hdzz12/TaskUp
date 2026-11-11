@@ -59,10 +59,7 @@ export default function LoginPage() {
             <Shield className="w-6 h-6" />
           </div>
 
-          <h1 className="text-xl font-bold text-center text-white">Login Admin Hafidz</h1>
-          <p className="text-xs text-center text-slate-400 mt-1">
-            Masukkan kata sandi untuk mengelola tugas dan proyek (CRUD)
-          </p>
+          <h1 className="text-xl font-bold text-center text-white">Login Admin</h1>
 
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
             {error && (

@@ -96,7 +96,6 @@ export function HeroSection({ stats }: Props) {
         {/* Right Column: Highlight Stats Card for Dosen / Lecturers */}
         <div className="w-full lg:w-80 shrink-0 p-6 rounded-3xl bg-gradient-to-b from-slate-900/90 to-slate-950/90 border border-slate-800 shadow-2xl backdrop-blur-md">
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-400 mb-4 pb-3 border-b border-slate-800">
-            <Sparkles className="w-4 h-4 text-[#12c187]" />
             <span>Ringkasan Akademik</span>
           </div>
 
@@ -136,11 +135,6 @@ export function HeroSection({ stats }: Props) {
               <div className="text-2xl font-bold text-[#42d9a1]">{stats.selesai}</div>
               <div className="text-[10px] text-[#42d9a1]/70 mt-0.5">Dinilai</div>
             </div>
-          </div>
-
-          <div className="mt-5 pt-4 border-t border-slate-800 text-[11px] text-slate-400 flex items-center justify-between">
-            <span>Dosen Pengampu:</span>
-            <span className="text-slate-200 font-medium">Akses Verifikasi Terbuka</span>
           </div>
         </div>
       </div>

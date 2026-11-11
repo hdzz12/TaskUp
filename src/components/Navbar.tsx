@@ -11,17 +11,10 @@ export async function Navbar() {
         <div className="h-16 flex items-center justify-between gap-2">
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-3 group shrink-0">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform text-sm">
-              MH
-            </div>
             <div className="hidden sm:block">
               <div className="font-semibold text-slate-100 flex items-center gap-2 text-sm">
                 Muhammad Hafidz
-                <span className="text-[10px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-                  Hub
-                </span>
               </div>
-              <p className="text-[11px] text-slate-400">Arsip Tugas & Portofolio</p>
             </div>
           </Link>
 
