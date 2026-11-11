@@ -23,7 +23,7 @@ export default async function EditItemPage({ params }: Props) {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 pb-20">
+    <div className="min-h-screen bg-[var(--background)] text-slate-100 pb-20">
       <header className="border-b border-slate-800 bg-slate-950/80 backdrop-blur-md sticky top-0 z-30">
         <div className="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
           <Link

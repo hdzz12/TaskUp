@@ -31,7 +31,7 @@ export default async function AdminDashboardPage() {
   const siapDicek = items.filter((i) => i.type === 'TUGAS' && i.status === 'SIAP_DICEK').length;
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 pb-20">
+    <div className="min-h-screen bg-[var(--background)] text-slate-100 pb-20">
       {/* Top Header */}
       <header className="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md sticky top-0 z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">

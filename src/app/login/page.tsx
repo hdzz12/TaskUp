@@ -41,7 +41,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center px-4 bg-slate-950 text-slate-100 relative">
+    <div className="min-h-screen flex flex-col justify-center items-center px-4 bg-[var(--background)] text-slate-100 relative">
       {/* Background glow */}
       <div className="absolute w-[350px] h-[350px] bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none -z-10" />
 
