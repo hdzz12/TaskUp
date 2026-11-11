@@ -102,7 +102,7 @@ export function HomeExplorer({ initialItems, isAdmin, defaultType }: Props) {
             onClick={() => handleTypeSelect('ALL')}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap cursor-pointer select-none touch-manipulation transition-all duration-200 ${
               selectedType === 'ALL'
-                ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md shadow-indigo-600/30'
+                ? 'bg-gradient-to-r from-[#12c187] to-[#0d9f70] text-white shadow-md shadow-[#12c187]/30'
                 : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
             }`}
           >
@@ -118,7 +118,7 @@ export function HomeExplorer({ initialItems, isAdmin, defaultType }: Props) {
             onClick={() => handleTypeSelect('TUGAS')}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap cursor-pointer select-none touch-manipulation transition-all duration-200 ${
               selectedType === 'TUGAS'
-                ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30'
+                ? 'bg-[#12c187] text-white shadow-md shadow-[#12c187]/30'
                 : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
             }`}
           >
@@ -128,7 +128,7 @@ export function HomeExplorer({ initialItems, isAdmin, defaultType }: Props) {
               {totalTugas}
             </span>
             {readyTugas > 0 && (
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" title="Ada tugas siap dicek" />
+              <span className="w-2 h-2 rounded-full bg-[#12c187] animate-pulse" title="Ada tugas siap dicek" />
             )}
           </button>
 
@@ -137,7 +137,7 @@ export function HomeExplorer({ initialItems, isAdmin, defaultType }: Props) {
             onClick={() => handleTypeSelect('PORTO')}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap cursor-pointer select-none touch-manipulation transition-all duration-200 ${
               selectedType === 'PORTO'
-                ? 'bg-purple-600 text-white shadow-md shadow-purple-600/30'
+                ? 'bg-[#0d9f70] text-white shadow-md shadow-[#0d9f70]/30'
                 : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
             }`}
           >
@@ -158,7 +158,7 @@ export function HomeExplorer({ initialItems, isAdmin, defaultType }: Props) {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Cari tugas, mata kuliah, dosen, atau tech stack..."
-              className="w-full pl-10 pr-8 py-2 text-xs rounded-xl bg-slate-950/80 border border-slate-800 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
+              className="w-full pl-10 pr-8 py-2 text-xs rounded-xl bg-slate-950/80 border border-slate-800 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-[#12c187] focus:ring-1 focus:ring-[#12c187] transition"
             />
             {searchQuery && (
               <button
@@ -174,7 +174,7 @@ export function HomeExplorer({ initialItems, isAdmin, defaultType }: Props) {
           {isAdmin ? (
             <Link
               href="/admin"
-              className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white shadow-md shadow-indigo-600/20 transition shrink-0 cursor-pointer"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-[#12c187] hover:bg-[#0fa875] text-white shadow-md shadow-[#12c187]/20 transition shrink-0 cursor-pointer"
               title="Dashboard Admin Hafidz"
             >
               <Sparkles className="w-3.5 h-3.5" />
@@ -207,7 +207,7 @@ export function HomeExplorer({ initialItems, isAdmin, defaultType }: Props) {
               onClick={() => setStatusFilter(st)}
               className={`px-3 py-1 rounded-lg border cursor-pointer select-none touch-manipulation transition ${
                 statusFilter === st
-                  ? 'bg-indigo-600/20 border-indigo-500 text-indigo-300 font-semibold shadow-sm'
+                  ? 'bg-[#12c187]/15 border-[#12c187]/60 text-[#42d9a1] font-semibold shadow-sm'
                   : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
               }`}
             >
@@ -228,7 +228,7 @@ export function HomeExplorer({ initialItems, isAdmin, defaultType }: Props) {
             <select
               value={categoryFilter}
               onChange={(e) => setCategoryFilter(e.target.value)}
-              className="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 focus:outline-none focus:border-indigo-500 cursor-pointer"
+              className="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 focus:outline-none focus:border-[#12c187] cursor-pointer"
             >
               <option value="ALL">Semua Kategori</option>
               {categories.map((c) => (

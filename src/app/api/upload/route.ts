@@ -4,11 +4,30 @@ import fs from 'fs';
 import { isAdminAuthenticated } from '@/lib/auth';
 import { put } from '@vercel/blob';
 
+const ALLOWED_EXTENSIONS = [
+  '.pdf',
+  '.doc',
+  '.docx',
+  '.ppt',
+  '.pptx',
+  '.xls',
+  '.xlsx',
+  '.txt',
+  '.md',
+  '.png',
+  '.jpg',
+  '.jpeg',
+  '.webp',
+];
+
 export async function POST(request: Request) {
   try {
     const isAuth = await isAdminAuthenticated();
     if (!isAuth) {
-      return NextResponse.json({ error: 'Unauthorized. Hanya admin yang bisa mengupload file.' }, { status: 401 });
+      return NextResponse.json(
+        { error: 'Unauthorized. Hanya admin yang bisa mengupload file.' },
+        { status: 401 }
+      );
     }
 
     const formData = await request.formData();
@@ -18,23 +37,30 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Tidak ada file yang dipilih.' }, { status: 400 });
     }
 
-    // Validate PDF
-    const isPdf = file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf');
-    if (!isPdf) {
-      return NextResponse.json({ error: 'Format berkas tidak valid. Hanya berkas PDF yang diperbolehkan.' }, { status: 400 });
+    const ext = path.extname(file.name).toLowerCase();
+    if (!ALLOWED_EXTENSIONS.includes(ext)) {
+      return NextResponse.json(
+        {
+          error: `Format berkas (${ext}) tidak didukung. Harap unggah PDF, Word (.docx), PowerPoint (.pptx), Excel (.xlsx), Teks, atau Gambar.`,
+        },
+        { status: 400 }
+      );
     }
 
-    // Validate size (max 30MB)
-    const MAX_SIZE = 30 * 1024 * 1024;
+    // Validate size (max 50MB)
+    const MAX_SIZE = 50 * 1024 * 1024;
     if (file.size > MAX_SIZE) {
-      return NextResponse.json({ error: 'Ukuran file terlalu besar. Maksimal 30 MB.' }, { status: 400 });
+      return NextResponse.json(
+        { error: 'Ukuran file terlalu besar. Maksimal 50 MB.' },
+        { status: 400 }
+      );
     }
 
     const safeBase = file.name
       .replace(/\.[^/.]+$/, '')
       .replace(/[^a-zA-Z0-9_-]/g, '_')
       .slice(0, 40);
-    const filename = `${Date.now()}-${safeBase}.pdf`;
+    const filename = `${Date.now()}-${safeBase}${ext}`;
 
     // 1. If Vercel Blob Token exists (Production Cloud)
     if (process.env.BLOB_READ_WRITE_TOKEN) {
@@ -47,6 +73,7 @@ export async function POST(request: Request) {
           filename: file.name,
           size: file.size,
           storage: 'vercel_blob',
+          extension: ext,
         });
       } catch (blobError) {
         console.warn('Vercel Blob failed, falling back to local file storage:', blobError);
@@ -70,9 +97,13 @@ export async function POST(request: Request) {
       filename: file.name,
       size: file.size,
       storage: 'local',
+      extension: ext,
     });
   } catch (error) {
     console.error('File upload error:', error);
-    return NextResponse.json({ error: 'Terjadi kesalahan saat mengunggah file.' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Terjadi kesalahan saat mengunggah file.' },
+      { status: 500 }
+    );
   }
 }

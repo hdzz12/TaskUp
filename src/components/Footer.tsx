@@ -11,7 +11,7 @@ export function Footer() {
           <div>
             <p className="font-semibold text-slate-200">{hafidzProfile.name}</p>
             <p className="text-sm text-slate-500 mt-1">
-              Platform Pengumpulan & Penilaian Tugas Kuliah + Portofolio Showcase
+              Hubungi saya melalui email atau kunjungi profil GitHub dan LinkedIn saya untuk informasi lebih lanjut.
             </p>
           </div>
 

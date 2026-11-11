@@ -23,7 +23,7 @@ export function HeroSection({ stats }: Props) {
   return (
     <section className="relative pt-6 pb-14 overflow-hidden">
       {/* Background glow effects */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-gradient-to-tr from-indigo-600/20 via-purple-600/20 to-pink-600/10 blur-[100px] rounded-full pointer-events-none -z-10" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-gradient-to-tr from-[#12c187]/20 via-[#0d9f70]/20 to-[#12c187]/10 blur-[100px] rounded-full pointer-events-none -z-10" />
 
       <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
         {/* Left Column: Bio & Intro */}
@@ -31,13 +31,13 @@ export function HeroSection({ stats }: Props) {
           <div className="space-y-3">
             <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
               Hai, saya{' '}
-              <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+              <span className="text-[#12c187]">
                 {hafidzProfile.name}
               </span>
             </h1>
-            <p className="text-lg font-medium text-slate-300">
+            <p className="text-lg font-medium text-slate-300">  
               {hafidzProfile.role} —{' '}
-              <span className="text-indigo-400">{hafidzProfile.major}</span>
+              <span className="text-[#12c187]">{hafidzProfile.major}</span>
             </p>
           </div>
 
@@ -49,7 +49,7 @@ export function HeroSection({ stats }: Props) {
           <div className="flex flex-wrap items-center gap-3 pt-2">
             <Link
               href="/?type=TUGAS#karya"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-xs bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/25 transition cursor-pointer"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-xs bg-[#12c187] hover:bg-[#0fa875] text-white shadow-lg shadow-[#12c187]/25 transition cursor-pointer"
             >
               <GraduationCap className="w-4 h-4" />
               <span>Periksa Tugas Kuliah</span>
@@ -59,7 +59,7 @@ export function HeroSection({ stats }: Props) {
               href="/?type=PORTO#karya"
               className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-xs bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 transition cursor-pointer"
             >
-              <FolderGit2 className="w-4 h-4 text-purple-400" />
+              <FolderGit2 className="w-4 h-4 text-[#12c187]" />
               <span>Eksplor Portofolio</span>
             </Link>
 
@@ -96,7 +96,7 @@ export function HeroSection({ stats }: Props) {
         {/* Right Column: Highlight Stats Card for Dosen / Lecturers */}
         <div className="w-full lg:w-80 shrink-0 p-6 rounded-3xl bg-gradient-to-b from-slate-900/90 to-slate-950/90 border border-slate-800 shadow-2xl backdrop-blur-md">
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-400 mb-4 pb-3 border-b border-slate-800">
-            <Sparkles className="w-4 h-4 text-indigo-400" />
+            <Sparkles className="w-4 h-4 text-[#12c187]" />
             <span>Ringkasan Akademik</span>
           </div>
 
@@ -104,7 +104,7 @@ export function HeroSection({ stats }: Props) {
             <div className="p-3.5 rounded-2xl bg-slate-950/60 border border-slate-800/60">
               <div className="flex items-center justify-between text-slate-400 text-xs mb-1">
                 <span>Tugas Kuliah</span>
-                <GraduationCap className="w-3.5 h-3.5 text-blue-400" />
+                <GraduationCap className="w-3.5 h-3.5 text-[#12c187]" />
               </div>
               <div className="text-2xl font-bold text-white">{stats.totalTugas}</div>
               <div className="text-[10px] text-slate-500 mt-0.5">Tersubmit</div>
@@ -113,28 +113,28 @@ export function HeroSection({ stats }: Props) {
             <div className="p-3.5 rounded-2xl bg-slate-950/60 border border-slate-800/60">
               <div className="flex items-center justify-between text-slate-400 text-xs mb-1">
                 <span>Portofolio</span>
-                <FolderGit2 className="w-3.5 h-3.5 text-purple-400" />
+                <FolderGit2 className="w-3.5 h-3.5 text-[#12c187]" />
               </div>
               <div className="text-2xl font-bold text-white">{stats.totalPorto}</div>
               <div className="text-[10px] text-slate-500 mt-0.5">Showcase</div>
             </div>
 
-            <div className="p-3.5 rounded-2xl bg-emerald-950/20 border border-emerald-500/20">
-              <div className="flex items-center justify-between text-emerald-400 text-xs mb-1">
+            <div className="p-3.5 rounded-2xl bg-[#12c187]/5 border border-[#12c187]/20">
+              <div className="flex items-center justify-between text-[#12c187] text-xs mb-1">
                 <span>Siap Dicek</span>
-                <Clock className="w-3.5 h-3.5 text-emerald-400" />
+                <Clock className="w-3.5 h-3.5 text-[#12c187]" />
               </div>
-              <div className="text-2xl font-bold text-emerald-400">{stats.siapDicek}</div>
-              <div className="text-[10px] text-emerald-400/70 mt-0.5">Menunggu review</div>
+              <div className="text-2xl font-bold text-[#12c187]">{stats.siapDicek}</div>
+              <div className="text-[10px] text-[#12c187]/70 mt-0.5">Menunggu review</div>
             </div>
 
-            <div className="p-3.5 rounded-2xl bg-indigo-950/20 border border-indigo-500/20">
-              <div className="flex items-center justify-between text-indigo-400 text-xs mb-1">
+            <div className="p-3.5 rounded-2xl bg-[#0d9f70]/10 border border-[#0d9f70]/25">
+              <div className="flex items-center justify-between text-[#42d9a1] text-xs mb-1">
                 <span>Selesai / A</span>
-                <CheckCircle className="w-3.5 h-3.5 text-indigo-400" />
+                <CheckCircle className="w-3.5 h-3.5 text-[#42d9a1]" />
               </div>
-              <div className="text-2xl font-bold text-indigo-400">{stats.selesai}</div>
-              <div className="text-[10px] text-indigo-400/70 mt-0.5">Dinilai</div>
+              <div className="text-2xl font-bold text-[#42d9a1]">{stats.selesai}</div>
+              <div className="text-[10px] text-[#42d9a1]/70 mt-0.5">Dinilai</div>
             </div>
           </div>
 

@@ -28,7 +28,7 @@ export function ItemCard({ item, isAdmin }: Props) {
   const isTugas = item.type === 'TUGAS';
 
   return (
-    <div className="group relative flex flex-col justify-between rounded-2xl border border-slate-800/80 bg-slate-900/40 p-6 backdrop-blur-sm transition-all duration-300 hover:border-slate-700 hover:bg-slate-900/70 hover:shadow-xl hover:shadow-indigo-500/5">
+    <div className="group relative flex flex-col justify-between rounded-2xl border border-slate-800/80 bg-slate-900/40 p-6 backdrop-blur-sm transition-all duration-300 hover:border-slate-700 hover:bg-slate-900/70 hover:shadow-xl hover:shadow-[#12c187]/5">
       <div>
         {/* Top Badges */}
         <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
@@ -36,8 +36,8 @@ export function ItemCard({ item, isAdmin }: Props) {
             <span
               className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold ${
                 isTugas
-                  ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20'
-                  : 'bg-purple-500/10 text-purple-400 border border-purple-500/20'
+                  ? 'bg-[#12c187]/10 text-[#42d9a1] border border-[#12c187]/20'
+                  : 'bg-[#0d9f70]/10 text-[#42d9a1] border border-[#0d9f70]/20'
               }`}
             >
               {isTugas ? (
@@ -62,8 +62,8 @@ export function ItemCard({ item, isAdmin }: Props) {
         </div>
 
         {/* Title */}
-        <Link href={`/tugas/${item.slug}`} className="block group-hover:text-indigo-400 transition">
-          <h3 className="text-lg font-bold text-slate-100 group-hover:text-indigo-300 transition line-clamp-2">
+        <Link href={`/tugas/${item.slug}`} className="block transition">
+          <h3 className="text-lg font-bold text-slate-100 group-hover:text-[#42d9a1] transition line-clamp-2">
             {item.title}
           </h3>
         </Link>
@@ -73,14 +73,14 @@ export function ItemCard({ item, isAdmin }: Props) {
           <div className="mt-3 p-3 rounded-xl bg-slate-950/60 border border-slate-800/60 space-y-1.5 text-xs">
             {item.subject && (
               <div className="flex items-center gap-2 text-slate-300">
-                <BookOpen className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                <BookOpen className="w-3.5 h-3.5 text-[#12c187] shrink-0" />
                 <span className="font-medium text-slate-400">Mata Kuliah:</span>
                 <span className="text-slate-200 font-medium truncate">{item.subject}</span>
               </div>
             )}
             {item.lecturer && (
               <div className="flex items-center gap-2 text-slate-300">
-                <UserCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                <UserCheck className="w-3.5 h-3.5 text-[#12c187] shrink-0" />
                 <span className="font-medium text-slate-400">Dosen Pengampu:</span>
                 <span className="text-slate-200 truncate">{item.lecturer}</span>
               </div>
@@ -95,7 +95,7 @@ export function ItemCard({ item, isAdmin }: Props) {
 
         {/* Grade Badge if available */}
         {item.grade && (
-          <div className="mt-3 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold">
+          <div className="mt-3 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#12c187]/10 border border-[#12c187]/20 text-[#42d9a1] text-xs font-semibold">
             <Award className="w-4 h-4" />
             <span>Nilai Dosen: {item.grade}</span>
           </div>
@@ -130,7 +130,7 @@ export function ItemCard({ item, isAdmin }: Props) {
       <div className="mt-6 pt-4 border-t border-slate-800/60 flex items-center justify-between gap-2">
         <Link
           href={`/tugas/${item.slug}`}
-          className="text-xs font-medium text-indigo-400 hover:text-indigo-300 flex items-center gap-1 group/btn"
+          className="text-xs font-medium text-[#12c187] hover:text-[#42d9a1] flex items-center gap-1 group/btn"
         >
           <span>Detail Lengkap</span>
           <span className="group-hover/btn:translate-x-0.5 transition-transform">→</span>
@@ -173,7 +173,7 @@ export function ItemCard({ item, isAdmin }: Props) {
           {isAdmin && (
             <Link
               href={`/admin/edit/${item.id}`}
-              className="px-2 py-1 rounded-md bg-indigo-600/30 text-indigo-300 hover:bg-indigo-600/50 text-[11px] font-medium border border-indigo-500/30 transition ml-1"
+              className="px-2 py-1 rounded-md bg-[#12c187]/20 text-[#42d9a1] hover:bg-[#12c187]/35 text-[11px] font-medium border border-[#12c187]/30 transition ml-1"
             >
               Edit
             </Link>

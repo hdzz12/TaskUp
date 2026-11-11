@@ -2,10 +2,10 @@ import { ProfileInfo } from './types';
 
 export const hafidzProfile: ProfileInfo = {
   name: 'Muhammad Hafidz',
-  role: 'Teknik Elektro',
+  role: 'Universitas Muhammadiyah Tasikmalaya',
   university: 'Universitas Muhammadiyah Tasikmalaya / Teknik Elektro',
   major: 'Teknik Elekro',
-  bio: 'Mahasiswa Teknik Elektro yang juga memiliki antusias membangun solusi dengan IoT, Robotic, software, web application modern, dan eksplorasi kecerdasan buatan.',
+  bio: 'Ini adalah web untuk mengumpulkan tugas-tugas.',
   email: 'hafidzm2929@gmail.com',
   github: 'https://github.com/hdzz12',
   linkedin: 'https://linkedin.com',
